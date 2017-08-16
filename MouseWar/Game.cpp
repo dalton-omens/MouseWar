@@ -25,5 +25,12 @@ class Game {
 		{
 			cursors.clear();
 		}
+		
+		int update() {
+			for (auto cursorPointer : cursors) {
+				cursorPointer->update();
+			}
+			return 0;
+		}
 
 };

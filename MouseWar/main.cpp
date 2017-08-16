@@ -16,10 +16,10 @@ int processMouseEvents(std::shared_ptr<Game> game) {
 				//printf("Mouse #%u relative motion %s %d\n", event.device, event.item == 0 ? "X" : "Y", event.value);
 
 				if (event.item == 0) {
-					game->getCursor(event.device)->moveX(event.value);
+					game->getCursor(event.device)->getInputX(event.value);
 				}
 				else {
-					game->getCursor(event.device)->moveY(event.value);
+					game->getCursor(event.device)->getInputY(event.value);
 				}
 
 		}
@@ -164,9 +164,13 @@ int main()
 	sf::Thread thread(&renderingThread, game);
 	thread.launch();
 	
+	std::chrono::milliseconds t(0);
+	const std::chrono::milliseconds dt(10);
 
-	while (window.isOpen())
-	{
+	std::chrono::milliseconds currentTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
+	std::chrono::milliseconds accumulator(0);
+
+	while (window.isOpen()) {
 		sf::Event sfevent;
 		while (window.pollEvent(sfevent))
 		{
@@ -179,6 +183,23 @@ int main()
 		}
 
 		processMouseEvents(game);
+
+		std::chrono::milliseconds newTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
+		//printf("\nNewTime is: %f", newTime);
+		std::chrono::milliseconds frameTime = newTime - currentTime;
+		
+		//printf("                                frameTime is: %f", frameTime);
+		currentTime = newTime;
+
+		accumulator += frameTime;
+
+		while (accumulator >= dt)
+		{
+			game->update();
+			accumulator -= dt;
+			t += dt;
+		}
+		
 
 	}
 

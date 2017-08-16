@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <cmath>
+#include <queue>
 
 #define AVG_BUFFER_LEN 50
 #define PI 3.141592653589793238463
@@ -13,6 +14,9 @@ class Cursor {
 		int xAvgBuffer[AVG_BUFFER_LEN];
 		int yAvgBuffer[AVG_BUFFER_LEN];
 		unsigned int runningAvgCounter;
+		std::queue<int> xInputs;
+		std::queue<int> yInputs;
+
 
 	public:
 		float rotation;
@@ -65,6 +69,14 @@ class Cursor {
 			yPos = input;
 		}
 
+		void getInputX(int input) {
+			xInputs.push(input);
+		}
+
+		void getInputY(int input) {
+			yInputs.push(input);
+		}
+
 		void moveX(int input) {
 			xPos = xPos + input;
 			if (xPos < mouseWidth/2) {
@@ -79,6 +91,7 @@ class Cursor {
 			runningAvgCounter = (runningAvgCounter + 1) % AVG_BUFFER_LEN;
 			setRotation();
 		}
+
 		void moveY(int input) {
 			yPos += input;
 			if (yPos < 0) {
@@ -111,5 +124,18 @@ class Cursor {
 			sf::Vector2<float> averages = getAverageMoves();
 			rotation = std::round(std::atan2(averages.y, averages.x) * 180 / PI) + 90;
 			//printf("rotation: %i\n", rotation);
+		}
+
+		int update() {
+			while (!xInputs.empty()) {
+				moveX(xInputs.front());
+				xInputs.pop();
+			}
+
+			while (!yInputs.empty()) {
+				moveY(yInputs.front());
+				yInputs.pop();
+			}
+			return 0;
 		}
 };
