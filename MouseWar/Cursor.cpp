@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <cmath>
 #include <queue>
+#include "BasicBullet"
 
 #define AVG_BUFFER_LEN 50
 #define PI 3.141592653589793238463
@@ -16,6 +17,7 @@ class Cursor {
 		unsigned int runningAvgCounter;
 		std::queue<int> xInputs;
 		std::queue<int> yInputs;
+		bool basicBulletQueued = false;
 
 
 	public:
@@ -137,5 +139,13 @@ class Cursor {
 				yInputs.pop();
 			}
 			return 0;
+		}
+
+		void fireBasicBullet() {
+			
+		}
+
+		void queueBasicBullet() {
+			basicBulletQueued = true;
 		}
 };
