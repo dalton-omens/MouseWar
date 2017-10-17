@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <memory>
-#include "Entities/Cursor.cpp"
+#include "Entities/Cursor.hpp"
 
 class Game {
 public:
