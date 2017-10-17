@@ -6,4 +6,4 @@
 #include <memory>
 #include <chrono>
 #include "manymouse/manymouse.h"
-#include "Game.h"
+#include "Game.hpp"

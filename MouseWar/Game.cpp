@@ -1,4 +1,4 @@
-#include "Game.h"
+#include "Game.hpp"
 
 int Game::addCursor(std::shared_ptr<Cursor> cursor) {
 	cursors.push_back(std::move(cursor));
