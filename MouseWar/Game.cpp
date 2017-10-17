@@ -1,36 +1,22 @@
-#include <SFML/Graphics.hpp>
-#include <vector>
-#include "Entities/Cursor.cpp"
-#include <memory>
+#include "Game.h"
 
+int Game::addCursor(std::shared_ptr<Cursor> cursor) {
+	cursors.push_back(std::move(cursor));
+	return 0;
+}
 
-class Game {
-	private:
-		std::vector<std::shared_ptr<Cursor>> cursors;
+std::shared_ptr<Cursor> Game::getCursor(int cursorNumber) {
+	return cursors.at(cursorNumber);
+}
 
-	public:
-		int numPlayers;
-		sf::RenderWindow* window;
-
-		int addCursor(std::shared_ptr<Cursor> cursor) {
-			cursors.push_back(std::move(cursor));
-			return 0;
-		}
-
-		std::shared_ptr<Cursor> getCursor(int cursorNumber) {
-			return cursors.at(cursorNumber);
-		}
-
-		void clearCursors()
-		{
-			cursors.clear();
-		}
+void Game::clearCursors()
+{
+	cursors.clear();
+}
 		
-		int update() {
-			for (auto cursorPointer : cursors) {
-				cursorPointer->update();
-			}
-			return 0;
-		}
-
-};
+int Game::update() {
+	for (auto cursorPointer : cursors) {
+		cursorPointer->update();
+	}
+	return 0;
+}
