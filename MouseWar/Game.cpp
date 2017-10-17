@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include "Cursor.cpp"
+#include "Entities/Cursor.cpp"
 #include <memory>
 
 
