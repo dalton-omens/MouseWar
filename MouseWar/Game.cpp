@@ -13,7 +13,9 @@ void Game::clearCursors()
 {
 	cursors.clear();
 }
-		
+
+/* Update the game logic by one tick.
+ * This gets every entity in the game, and advances each of their states by one. */
 int Game::update() {
 	for (auto cursorPointer : cursors) {
 		cursorPointer->update();
