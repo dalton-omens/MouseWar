@@ -3,9 +3,12 @@
 #include <SFML/Graphics.hpp>
 #include <cmath>
 #include <queue>
+#include "../Game.hpp"
 
 #define AVG_BUFFER_LEN 50
 #define PI 3.141592653589793238463
+
+class Game; // find out why this is necessary
 
 class Cursor {
 public:
@@ -14,7 +17,7 @@ public:
 	const unsigned short mouseHeight = 29;
 	const unsigned short mouseWidth = 23;
 
-	Cursor(unsigned int windowWidth_in, unsigned int windowHeight_in, sf::Color* color_in);
+	Cursor(std::shared_ptr<Game> game, sf::Color* color_in);
 
 	unsigned int getXpos();
 	unsigned int getYpos();
@@ -22,8 +25,6 @@ public:
 	void setYpos(int input);
 	void getInputX(int input);
 	void getInputY(int input);
-	void moveX(int input); // private?
-	void moveY(int input);
 
 	sf::Vector2<float> getAverageMoves();
 	void setRotation();
@@ -40,4 +41,7 @@ private:
 	std::queue<int> xInputs;
 	std::queue<int> yInputs;
 	bool basicBulletQueued = false;
+
+	void moveX(int input);
+	void moveY(int input);
 };

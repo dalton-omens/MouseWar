@@ -1,10 +1,10 @@
 #include "Cursor.hpp"
 
-Cursor::Cursor(unsigned int windowWidth_in, unsigned int windowHeight_in, sf::Color* color_in) {
+Cursor::Cursor(std::shared_ptr<Game> game, sf::Color* color_in) {
 	xPos = 0;
 	yPos = 0;
-	windowWidth = windowWidth_in;
-	windowHeight = windowHeight_in;
+	windowWidth = game->window->getSize().x;
+	windowHeight = game->window->getSize().y;
 	color = color_in;
 	runningAvgCounter = 0;
 	rotation = 0;

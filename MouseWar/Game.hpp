@@ -5,6 +5,8 @@
 #include <memory>
 #include "Entities/Cursor.hpp"
 
+class Cursor; // find out why this is necessary
+
 class Game {
 public:
 	int numPlayers;

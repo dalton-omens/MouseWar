@@ -155,7 +155,7 @@ int main()
 	std::vector<sf::Color> colors{ sf::Color::Blue,sf::Color::Red,sf::Color::Green,sf::Color::Black,sf::Color::Yellow,sf::Color::White,sf::Color::Cyan,sf::Color::Magenta };
 
 	for	(int i = 0; i < available_mice; i++) {
-		game->addCursor(std::make_shared<Cursor>(desktop.width, desktop.height, &colors.at(i)));
+		game->addCursor(std::make_shared<Cursor>(game, &colors.at(i)));
 	}
 	// deactivate its OpenGL context
 	window.setActive(false);
