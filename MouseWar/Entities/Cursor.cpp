@@ -24,6 +24,11 @@ unsigned int Cursor::getYpos() {
 	return this->yPos;
 }
 
+float Cursor::getRotation() {
+	return this->rotation;
+}
+
+
 /* Manually set x position of this cursor. */
 void Cursor::setXpos(int input) {
 	if (input < 0) {
@@ -69,7 +74,6 @@ void Cursor::moveX(int input) {
 	xAvgBuffer[runningAvgCounter] = input;
 	yAvgBuffer[runningAvgCounter] = 0;
 	runningAvgCounter = (runningAvgCounter + 1) % AVG_BUFFER_LEN;
-	setRotation();
 }
 
 /* Move this cursor in y direction. Private method. */
@@ -84,13 +88,11 @@ void Cursor::moveY(int input) {
 	yAvgBuffer[runningAvgCounter] = input;
 	xAvgBuffer[runningAvgCounter] = 0;
 	runningAvgCounter = (runningAvgCounter + 1) % AVG_BUFFER_LEN;
-	setRotation();
 }
 
 /* Compute the average movement in x and y over the last AVG_BUFFER_LEN inputs 
  * Used for rotation */
-sf::Vector2<float> Cursor::getAverageMoves()
-{
+sf::Vector2<float> Cursor::getAverageMoves() {
 	float sumX = 0;
 	float sumY = 0;
 	for (int i = 0; i < AVG_BUFFER_LEN; i++)
@@ -102,12 +104,11 @@ sf::Vector2<float> Cursor::getAverageMoves()
 	return sf::Vector2<float>(sumX / AVG_BUFFER_LEN, sumY / AVG_BUFFER_LEN);
 }
 
-/* Computes the rotation of this cursor based on previous moves */
-void Cursor::setRotation() // set rotation after the end of update() instead?
-{
+/* Computes the rotation of this cursor based on previous moves
+ * TODO: make this way more efficient (no trig functions!) */
+void Cursor::setRotation() {
 	sf::Vector2<float> averages = getAverageMoves();
 	rotation = std::round(std::atan2(averages.y, averages.x) * 180 / PI) + 90;
-	//printf("rotation: %i\n", rotation);
 }
 
 /* Update this cursor in game logic.
@@ -125,6 +126,7 @@ int Cursor::update() {
 		moveY(yInputs.front());
 		yInputs.pop();
 	}
+	setRotation();
 	return 0;
 }
 

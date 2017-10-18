@@ -89,7 +89,7 @@ void renderingThread(std::shared_ptr<Game> game)
 			cursor.setPoint(5, sf::Vector2f(-3, 18));
 			cursor.setPoint(6, sf::Vector2f(-11, 21));
 
-			cursor.setRotation(game->getCursor(i)->rotation);
+			cursor.setRotation(game->getCursor(i)->getRotation());
 
 			cursor.setFillColor(*(game->getCursor(i)->color));
 			//printf("Mouse 0 x position %i\n", game->getCursor(0).getXpos());

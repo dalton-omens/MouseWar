@@ -12,7 +12,6 @@ class Game; // find out why this is necessary
 
 class Cursor {
 public:
-	float rotation;
 	sf::Color *color;
 	const unsigned short mouseHeight = 29;
 	const unsigned short mouseWidth = 23;
@@ -21,19 +20,20 @@ public:
 
 	unsigned int getXpos();
 	unsigned int getYpos();
+	float getRotation();
 	void setXpos(int input);
 	void setYpos(int input);
 	void getInputX(int input);
 	void getInputY(int input);
 
-	sf::Vector2<float> getAverageMoves();
-	void setRotation();
 	int update();
+
 	void fireBasicBullet();
 	void queueBasicBullet();
 
 private:
 	int xPos, yPos;
+	float rotation;
 	int windowWidth, windowHeight;
 	int xAvgBuffer[AVG_BUFFER_LEN];
 	int yAvgBuffer[AVG_BUFFER_LEN];
@@ -44,4 +44,7 @@ private:
 
 	void moveX(int input);
 	void moveY(int input);
+
+	sf::Vector2<float> getAverageMoves();
+	void setRotation();
 };
