@@ -7,3 +7,4 @@
 #include <chrono>
 #include "manymouse/manymouse.h"
 #include "Game.hpp"
+#include "Render.hpp"
