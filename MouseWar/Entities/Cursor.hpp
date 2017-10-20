@@ -4,14 +4,14 @@
 #include <cmath>
 #include <queue>
 #include "../Game.hpp"
-#include "Entity.hpp"
+#include "Drawable.hpp"
 
 #define AVG_BUFFER_LEN 50
 #define PI 3.141592653589793238463
 
 class Game; // find out why this is necessary
 
-class Cursor : Entity {
+class Cursor : Drawable {
 public:
 	sf::Color *color;
 	const unsigned short mouseHeight = 29;
@@ -28,6 +28,8 @@ public:
 	void getInputY(int input);
 
 	int update();
+
+	sf::Drawable* draw() override;
 
 	void fireBasicBullet();
 	void queueBasicBullet();
