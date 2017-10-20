@@ -130,6 +130,12 @@ int Cursor::update() {
 	return 0;
 }
 
+/* Draws this object to the target, which is the window. This function is part of the
+ * sf::Drawable class. Render.cpp calling window.draw on this object will call this method. */
+void Cursor::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+	
+}
+
 /* Fire a basic bullet, when updating game logic. */
 void Cursor::fireBasicBullet() {
 			

@@ -11,7 +11,7 @@
 
 class Game; // find out why this is necessary
 
-class Cursor : Entity {
+class Cursor : Entity, public sf::Drawable {
 public:
 	sf::Color *color;
 	const unsigned short mouseHeight = 29;
@@ -47,4 +47,6 @@ private:
 
 	sf::Vector2<float> getAverageMoves();
 	void setRotation();
+
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };

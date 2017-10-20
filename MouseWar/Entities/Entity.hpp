@@ -1,8 +1,9 @@
 #pragma once
 
-/* All "things" in MouseWar are entities. They have a position, and that's about it. 
- * Drawable, Physical, etc. all inherit from Entity.
- */
+#include<memory>
+#include<SFML/Graphics.hpp>
+
+/* All "things" in MouseWar are entities. They have a position, and maybe a sprite. */
 class Entity {
 public:
 	/* Virtual destructor makes sure that subclass destructor is called */
@@ -16,4 +17,5 @@ public:
 protected:
 	int xPos = 0;
 	int yPos = 0;
+	std::unique_ptr<sf::Drawable> shape;
 };
