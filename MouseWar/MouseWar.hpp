@@ -8,3 +8,7 @@
 #include "manymouse/manymouse.h"
 #include "Game.hpp"
 #include "Render.hpp"
+
+
+int processMouseEvents(std::shared_ptr<Game> game);
+int initManyMouse();

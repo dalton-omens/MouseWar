@@ -7,9 +7,10 @@
 void renderingThread(std::shared_ptr<Game> game) {
 	sf::RenderWindow *window = game->window;
 
-	// the rendering loop
+	/*** RENDERING LOOP ***/
 	while (window->isOpen()) {
 
+		/* Sets background */
 		window->clear(sf::Color::White);
 
 		for (int i = 0; i < game->numPlayers; i++) {

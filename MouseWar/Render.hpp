@@ -6,6 +6,7 @@
 
 /**
 * \brief Rendering thread. game parameter should not be modified.
+* perhaps make const?
 * \param game
 */
 void renderingThread(std::shared_ptr<Game> game);
