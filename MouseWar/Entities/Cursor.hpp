@@ -4,13 +4,14 @@
 #include <cmath>
 #include <queue>
 #include "../Game.hpp"
+#include "Entity.hpp"
 
 #define AVG_BUFFER_LEN 50
 #define PI 3.141592653589793238463
 
 class Game; // find out why this is necessary
 
-class Cursor {
+class Cursor : Entity {
 public:
 	sf::Color *color;
 	const unsigned short mouseHeight = 29;
@@ -18,11 +19,11 @@ public:
 
 	Cursor(std::shared_ptr<Game> game, sf::Color* color_in);
 
-	unsigned int getXpos();
-	unsigned int getYpos();
+	int getxPos() override;
+	int getyPos() override ;
 	float getRotation();
-	void setXpos(int input);
-	void setYpos(int input);
+	void setxPos(int input) override;
+	void setyPos(int input) override;
 	void getInputX(int input);
 	void getInputY(int input);
 
@@ -32,7 +33,6 @@ public:
 	void queueBasicBullet();
 
 private:
-	int xPos, yPos;
 	float rotation;
 	int windowWidth, windowHeight;
 	int xAvgBuffer[AVG_BUFFER_LEN];

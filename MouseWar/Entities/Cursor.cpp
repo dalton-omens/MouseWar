@@ -1,10 +1,10 @@
 #include "Cursor.hpp"
 
 Cursor::Cursor(std::shared_ptr<Game> game, sf::Color* color_in) {
-	xPos = 0;
-	yPos = 0;
 	windowWidth = game->window->getSize().x;
 	windowHeight = game->window->getSize().y;
+	xPos = windowWidth / 2;
+	yPos = windowHeight / 2;
 	color = color_in;
 	runningAvgCounter = 0;
 	rotation = 0;
@@ -16,11 +16,11 @@ Cursor::Cursor(std::shared_ptr<Game> game, sf::Color* color_in) {
 	}
 }
 
-unsigned int Cursor::getXpos() {
+int Cursor::getxPos() {
 	return this->xPos;
 }
 
-unsigned int Cursor::getYpos() {
+int Cursor::getyPos() {
 	return this->yPos;
 }
 
@@ -30,7 +30,7 @@ float Cursor::getRotation() {
 
 
 /* Manually set x position of this cursor. */
-void Cursor::setXpos(int input) {
+void Cursor::setxPos(int input) {
 	if (input < 0) {
 		input = 0;
 	}
@@ -41,7 +41,7 @@ void Cursor::setXpos(int input) {
 }
 
 /* Manually set y position of this cursor. */
-void Cursor::setYpos(int input) {
+void Cursor::setyPos(int input) {
 	if (input < 0) {
 		input = 0;
 	}

@@ -32,7 +32,7 @@ void renderingThread(std::shared_ptr<Game> game) {
 			//printf("Mouse 0 y position %i\n", game->getCursor(0).getYpos());
 
 
-			cursor.setPosition(game->getCursor(i)->getXpos(), game->getCursor(i)->getYpos());
+			cursor.setPosition(game->getCursor(i)->getxPos(), game->getCursor(i)->getyPos());
 			window->draw(cursor);
 		}
 		window->display();
