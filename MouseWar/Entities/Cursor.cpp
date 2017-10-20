@@ -130,10 +130,6 @@ int Cursor::update() {
 	return 0;
 }
 
-sf::Drawable* Cursor::draw() {
-	return nullptr;
-}
-
 /* Fire a basic bullet, when updating game logic. */
 void Cursor::fireBasicBullet() {
 			
