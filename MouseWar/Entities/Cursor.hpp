@@ -2,7 +2,6 @@
 
 #include <SFML/Graphics.hpp>
 #include <cmath>
-#include <queue>
 #include "../Game.hpp"
 #include "Entity.hpp"
 
@@ -40,8 +39,8 @@ private:
 	int xAvgBuffer[AVG_BUFFER_LEN];
 	int yAvgBuffer[AVG_BUFFER_LEN];
 	unsigned int runningAvgCounter;
-	std::queue<int> xInputs;
-	std::queue<int> yInputs;
+	int xInputs; // since last update
+	int yInputs;
 	bool basicBulletQueued = false;
 
 	/* Shape is constantly updated with this Cursor's current state */

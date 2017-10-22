@@ -1,6 +1,7 @@
 #include "Cursor.hpp"
 
 Cursor::Cursor(std::shared_ptr<Game> game, sf::Color* color_in) {
+	// TODO: perhaps an initialization list?
 	windowWidth = game->window->getSize().x;
 	windowHeight = game->window->getSize().y;
 	xPos = windowWidth / 2;
@@ -8,6 +9,8 @@ Cursor::Cursor(std::shared_ptr<Game> game, sf::Color* color_in) {
 	color = color_in;
 	runningAvgCounter = 0;
 	rotation = 0;
+	xInputs = 0;
+	yInputs = 0;
 
 	for (int i = 0; i < AVG_BUFFER_LEN; i++)
 	{
@@ -65,18 +68,29 @@ void Cursor::setyPos(int input) {
 	yPos = input;
 }
 
-/* Receive input from user, put the input to the move queue to be used in update() */
+/* Receive input from user, add to moves since last update */
 void Cursor::getInputX(int input) {
-	xInputs.push(input);
+	printf("X input: %i\n", input);
+	printf("Cum. input: %i\n", xInputs);
+	xInputs += input;
+
+	xAvgBuffer[runningAvgCounter] = input;
+	yAvgBuffer[runningAvgCounter] = 0;
+	runningAvgCounter = (runningAvgCounter + 1) % AVG_BUFFER_LEN;
 }
 
-/* Receive input from user, put the input to the move queue to be used in update() */
+/* Receive input from user, add to moves since last update */
 void Cursor::getInputY(int input) {
-	yInputs.push(input);
+	yInputs += input;
+
+	yAvgBuffer[runningAvgCounter] = input;
+	xAvgBuffer[runningAvgCounter] = 0;
+	runningAvgCounter = (runningAvgCounter + 1) % AVG_BUFFER_LEN;
 }
 
 /* Move this cursor in x direction. Private method. */
 void Cursor::moveX(int input) {
+	//printf("MoveX input: %i\n", input);
 	xPos = xPos + input;
 	if (xPos < mouseWidth/2) {
 		xPos = mouseWidth/2;
@@ -84,10 +98,6 @@ void Cursor::moveX(int input) {
 	else if (xPos > windowWidth - mouseWidth/2) {
 		xPos = windowWidth - mouseWidth/2;
 	}
-
-	xAvgBuffer[runningAvgCounter] = input;
-	yAvgBuffer[runningAvgCounter] = 0;
-	runningAvgCounter = (runningAvgCounter + 1) % AVG_BUFFER_LEN;
 }
 
 /* Move this cursor in y direction. Private method. */
@@ -99,9 +109,6 @@ void Cursor::moveY(int input) {
 	else if (yPos > windowHeight - mouseHeight) {
 		yPos = windowHeight - mouseHeight;
 	}
-	yAvgBuffer[runningAvgCounter] = input;
-	xAvgBuffer[runningAvgCounter] = 0;
-	runningAvgCounter = (runningAvgCounter + 1) % AVG_BUFFER_LEN;
 }
 
 /* Compute the average movement in x and y over the last AVG_BUFFER_LEN inputs 
@@ -131,14 +138,13 @@ void Cursor::setRotation() {
  * This method is called once every update cycle.
  */
 int Cursor::update() {
-	while (!xInputs.empty()) {
-		moveX(xInputs.front());
-		xInputs.pop();
+	if (xInputs) {
+		moveX(xInputs);
+		xInputs = 0;
 	}
-
-	while (!yInputs.empty()) {
-		moveY(yInputs.front());
-		yInputs.pop();
+	if (yInputs) {
+		moveY(yInputs);
+		yInputs = 0;
 	}
 	setRotation();
 
