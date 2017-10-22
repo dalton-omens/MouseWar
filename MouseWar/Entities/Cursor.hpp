@@ -4,18 +4,17 @@
 #include <cmath>
 #include "../Game.hpp"
 #include "Entity.hpp"
+#include "BasicBullet.hpp"
 
 #define AVG_BUFFER_LEN 50
 #define PI 3.141592653589793238463
+#define MOUSE_HEIGHT 29
+#define MOUSE_WIDTH 23
 
 class Game; // find out why this is necessary
 
 class Cursor : public Entity {
 public:
-	sf::Color *color;
-	const unsigned short mouseHeight = 29;
-	const unsigned short mouseWidth = 23;
-
 	Cursor(std::shared_ptr<Game> game, sf::Color* color_in);
 
 	int getxPos() override;
@@ -45,6 +44,7 @@ private:
 
 	/* Shape is constantly updated with this Cursor's current state */
 	std::unique_ptr<sf::ConvexShape> shape;
+	sf::Color *color;
 
 	/* Internal move functions. Cursor should be moved by getting input i.e. getInputX() */
 	void moveX(int input);

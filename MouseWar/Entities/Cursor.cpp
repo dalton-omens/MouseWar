@@ -92,11 +92,11 @@ void Cursor::getInputY(int input) {
 void Cursor::moveX(int input) {
 	//printf("MoveX input: %i\n", input);
 	xPos = xPos + input;
-	if (xPos < mouseWidth/2) {
-		xPos = mouseWidth/2;
+	if (xPos < MOUSE_WIDTH/2) {
+		xPos = MOUSE_WIDTH/2;
 	}
-	else if (xPos > windowWidth - mouseWidth/2) {
-		xPos = windowWidth - mouseWidth/2;
+	else if (xPos > windowWidth - MOUSE_WIDTH/2) {
+		xPos = windowWidth - MOUSE_WIDTH/2;
 	}
 }
 
@@ -106,8 +106,8 @@ void Cursor::moveY(int input) {
 	if (yPos < 0) {
 		yPos = 0;
 	}
-	else if (yPos > windowHeight - mouseHeight) {
-		yPos = windowHeight - mouseHeight;
+	else if (yPos > windowHeight - MOUSE_HEIGHT) {
+		yPos = windowHeight - MOUSE_HEIGHT;
 	}
 }
 

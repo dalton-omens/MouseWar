@@ -1,28 +1,24 @@
-#include <SFML/Graphics.hpp>
+#include "BasicBullet.hpp"
 
-#define BULLET_RADIUS 100
-#define BULLET_POINT_COUNT 20
+BasicBullet::BasicBullet(int xPos, int yPos, double vel, double rotation)
+	: xPos(xPos), yPos(yPos), vel(vel), rotation(rotation)
+{
+	shape = std::make_unique<sf::CircleShape>(BULLET_RADIUS, BULLET_POINT_COUNT);
+	shape->setFillColor(sf::Color::Black);
+	shape->setPosition(xPos, yPos);
+}
 
-class BasicBullet {
+/* Update this bullet in game logic.
+* This method applies movement based on its velocity and direction.
+* Then, it checks for collisions with other mice.
+* This method is called once every update cycle.
+*/
+int BasicBullet::update() {
+	return 0;
+}
 
-	private:
-		int xPos, yPos;
-		double vel, rotation;
-
-	public:
-		BasicBullet(int xPos, int yPos, double vel, double rotation) {
-			this->xPos = xPos;
-			this->yPos = yPos;
-			this->vel = vel;
-			this->rotation = rotation;
-		}
-
-		sf::CircleShape draw() {
-			sf::CircleShape bullet(BULLET_RADIUS, BULLET_POINT_COUNT);
-			bullet.setFillColor(sf::Color::Black);
-			bullet.setPosition(xPos, yPos);
-			return bullet;
-		}
-
-
-};
+/* Draws this object to the target, which is the window. This function is part of the
+* sf::Drawable class. Render.cpp calling window.draw on this object will call this method. */
+void BasicBullet::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+	target.draw(*shape, states);
+}
