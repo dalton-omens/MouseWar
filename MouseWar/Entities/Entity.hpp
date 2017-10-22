@@ -18,7 +18,6 @@ public:
 protected:
 	int xPos = 0;
 	int yPos = 0;
-	std::unique_ptr<sf::Drawable> shape;
 
 	/* Draw this entity to the render target */
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override = 0;

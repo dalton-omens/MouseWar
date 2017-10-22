@@ -14,6 +14,20 @@ Cursor::Cursor(std::shared_ptr<Game> game, sf::Color* color_in) {
 		xAvgBuffer[i] = 0;
 		yAvgBuffer[i] = 0;
 	}
+
+	/* Initialize the shape to be drawn in draw() */
+	shape = std::make_unique<sf::ConvexShape>(10);
+	shape->setPointCount(7);
+	shape->setPoint(0, sf::Vector2f(0, 0));
+	shape->setPoint(1, sf::Vector2f(11, 21));
+	shape->setPoint(2, sf::Vector2f(3, 18));
+	shape->setPoint(3, sf::Vector2f(3, 29));
+	shape->setPoint(4, sf::Vector2f(-3, 29));
+	shape->setPoint(5, sf::Vector2f(-3, 18));
+	shape->setPoint(6, sf::Vector2f(-11, 21));
+	shape->setRotation(rotation);
+	shape->setFillColor(*color);
+	shape->setPosition(xPos, yPos);
 }
 
 int Cursor::getxPos() {
@@ -127,13 +141,17 @@ int Cursor::update() {
 		yInputs.pop();
 	}
 	setRotation();
+
+	/* Update the rendering's attributes */
+	shape->setPosition(xPos, yPos);
+	shape->setRotation(rotation);
 	return 0;
 }
 
 /* Draws this object to the target, which is the window. This function is part of the
  * sf::Drawable class. Render.cpp calling window.draw on this object will call this method. */
 void Cursor::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-	
+	target.draw(*shape, states);
 }
 
 /* Fire a basic bullet, when updating game logic. */

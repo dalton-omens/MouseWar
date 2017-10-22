@@ -11,7 +11,7 @@
 
 class Game; // find out why this is necessary
 
-class Cursor : Entity {
+class Cursor : public Entity {
 public:
 	sf::Color *color;
 	const unsigned short mouseHeight = 29;
@@ -32,6 +32,8 @@ public:
 	void fireBasicBullet();
 	void queueBasicBullet();
 
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
 private:
 	float rotation;
 	int windowWidth, windowHeight;
@@ -42,11 +44,13 @@ private:
 	std::queue<int> yInputs;
 	bool basicBulletQueued = false;
 
+	/* Shape is constantly updated with this Cursor's current state */
+	std::unique_ptr<sf::ConvexShape> shape;
+
+	/* Internal move functions. Cursor should be moved by getting input i.e. getInputX() */
 	void moveX(int input);
 	void moveY(int input);
 
 	sf::Vector2<float> getAverageMoves();
 	void setRotation();
-
-	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };
