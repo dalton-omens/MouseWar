@@ -145,6 +145,7 @@ int processMouseEvents(std::shared_ptr<Game> game) {
 		/* All button presses */
 		else if (event.type == MANYMOUSE_EVENT_BUTTON) {
 			//printf("Mouse #%u button %u %s\n", event.device, event.item, event.value ? "down" : "up");
+			game->getCursor(event.device)->queueBasicBullet();
 		}
 		/* Scroll wheel */
 		else if (event.type == MANYMOUSE_EVENT_SCROLL) {

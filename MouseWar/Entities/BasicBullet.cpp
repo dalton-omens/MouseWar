@@ -8,6 +8,22 @@ BasicBullet::BasicBullet(int xPos, int yPos, int xVel, int yVel)
 	shape->setPosition(xPos, yPos);
 }
 
+int BasicBullet::getxPos() {
+	return xPos;
+}
+
+int BasicBullet::getyPos() {
+	return yPos;
+}
+
+void BasicBullet::setxPos(int input) {
+	xPos = input;
+}
+
+void BasicBullet::setyPos(int input) {
+	yPos = input;
+}
+
 /* Update this bullet in game logic.
 * This method applies movement based on its velocity and direction.
 * Then, it checks for collisions with other mice.

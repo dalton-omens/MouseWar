@@ -11,6 +11,7 @@ Cursor::Cursor(std::shared_ptr<Game> game, sf::Color* color_in) {
 	rotation = 0;
 	xInputs = 0;
 	yInputs = 0;
+	this->game = game;
 
 	for (int i = 0; i < AVG_BUFFER_LEN; i++)
 	{
@@ -148,6 +149,10 @@ int Cursor::update() {
 	}
 	setRotation();
 
+	if (basicBulletQueued) {
+		fireBasicBullet();
+	}
+
 	/* Update the rendering's attributes */
 	shape->setPosition(xPos, yPos);
 	shape->setRotation(rotation);
@@ -160,9 +165,10 @@ void Cursor::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(*shape, states);
 }
 
-/* Fire a basic bullet, when updating game logic. */
+/* Fire a basic bullet, when updating game logic. Private method. */
 void Cursor::fireBasicBullet() {
-			
+	game->addProjectile(std::move(std::make_unique<BasicBullet>(xPos, yPos, 4, 4)));
+	basicBulletQueued = false;
 }
 
 /* Place a basic bullet into the action queue. */

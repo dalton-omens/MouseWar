@@ -27,12 +27,13 @@ public:
 
 	int update();
 
-	void fireBasicBullet();
 	void queueBasicBullet();
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 private:
+	std::shared_ptr<Game> game;
+
 	float rotation;
 	int windowWidth, windowHeight;
 	int xAvgBuffer[AVG_BUFFER_LEN];
@@ -52,4 +53,6 @@ private:
 
 	sf::Vector2<float> getAverageMoves();
 	void setRotation();
+
+	void fireBasicBullet();
 };

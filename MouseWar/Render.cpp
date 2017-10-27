@@ -17,7 +17,9 @@ void renderingThread(std::shared_ptr<Game> game) {
 		for (int i = 0; i < game->numPlayers; i++) {
 			window->draw(*(game->getCursor(i)));
 		}
+		for (int i = 0; i < game->numProjectiles(); i++) {
+			window->draw(*(game->getProjectile(i)));
+		}
 		window->display();
-
 	}
 }
