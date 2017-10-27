@@ -167,7 +167,7 @@ void Cursor::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 
 /* Fire a basic bullet, when updating game logic. Private method. */
 void Cursor::fireBasicBullet() {
-	game->addProjectile(std::move(std::make_unique<BasicBullet>(xPos, yPos, 4, 4)));
+	game->addProjectile(std::move(std::make_unique<BasicBullet>(game, game->numProjectiles(), xPos, yPos, 4, 4)));
 	basicBulletQueued = false;
 }
 

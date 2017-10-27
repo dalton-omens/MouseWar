@@ -7,6 +7,7 @@
 #include "Entities/BasicBullet.hpp"
 
 class Cursor; // find out why this is necessary
+class BasicBullet;
 
 class Game {
 public:
@@ -19,6 +20,7 @@ public:
 
 	int addProjectile(std::unique_ptr<BasicBullet> projectile);
 	BasicBullet* getProjectile(int projID);
+	void removeProjectile(int projID);
 	int numProjectiles() const;
 	void clearProjectiles();
 

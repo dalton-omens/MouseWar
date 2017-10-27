@@ -25,6 +25,12 @@ BasicBullet* Game::getProjectile(int projID) {
 	return projectiles.at(projID).get();
 }
 
+/* Remove a projectile from the projectiles vector. */
+void Game::removeProjectile(int projID) {
+	projectiles.erase(projectiles.begin() + projID);
+}
+
+
 int Game::numProjectiles() const {
 	return projectiles.size();
 }
