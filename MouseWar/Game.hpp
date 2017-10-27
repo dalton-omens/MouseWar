@@ -12,11 +12,11 @@ public:
 	int numPlayers;
 	sf::RenderWindow *window;
 
-	int addCursor(std::shared_ptr<Cursor> cursor);
-	std::shared_ptr<Cursor> getCursor(int cursorNumber);
+	int addCursor(std::unique_ptr<Cursor> cursor);
+	Cursor* getCursor(int cursorNumber);
 	void clearCursors();
 	int update();
 
 private:
-	std::vector<std::shared_ptr<Cursor>> cursors;
+	std::vector<std::unique_ptr<Cursor>> cursors;
 };

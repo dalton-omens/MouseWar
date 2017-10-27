@@ -27,7 +27,7 @@ int main()
 
 	/* Create cursor objects for the game based on how many mice are plugged in */
 	for	(int i = 0; i < available_mice; i++) {
-		game->addCursor(std::make_shared<Cursor>(game, &colors.at(i)));
+		game->addCursor(std::move(std::make_unique<Cursor>(game, &colors.at(i))));
 	}
 
 	/* Deactivate the openGL context for the window before launching rendering thread */
