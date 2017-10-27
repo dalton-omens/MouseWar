@@ -9,7 +9,7 @@
 
 class BasicBullet : public Entity {
 public:
-	BasicBullet(int xPos, int yPos, double vel, double rotation);
+	BasicBullet(int xPos, int yPos, int xVel, int yVel);
 
 	int update();
 
@@ -17,7 +17,7 @@ public:
 
 private:
 	int xPos, yPos;
-	double vel, rotation;
+	int xVel, yVel;
 
 	std::unique_ptr<sf::CircleShape> shape;
 };

@@ -1,7 +1,7 @@
 #include "BasicBullet.hpp"
 
-BasicBullet::BasicBullet(int xPos, int yPos, double vel, double rotation)
-	: xPos(xPos), yPos(yPos), vel(vel), rotation(rotation)
+BasicBullet::BasicBullet(int xPos, int yPos, int xVel, int yVel)
+	: xPos(xPos), yPos(yPos), xVel(xVel), yVel(yVel)
 {
 	shape = std::make_unique<sf::CircleShape>(BULLET_RADIUS, BULLET_POINT_COUNT);
 	shape->setFillColor(sf::Color::Black);
