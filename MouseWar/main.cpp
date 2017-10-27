@@ -57,6 +57,7 @@ int main()
 			if (sfevent.type == sf::Event::Closed) {
 				window.close();
 				game->clearCursors();
+				game->clearProjectiles();
 			}
 		}
 
