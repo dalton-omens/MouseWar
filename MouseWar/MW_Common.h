@@ -4,10 +4,10 @@
 
 #include <cstdint>
 
-typedef struct MW_Vec3 {
-	int32_t& operator[](int i) { return vec[i]; }
-	int32_t vec[3];
-} MW_Vec3;
+typedef struct MW_Vec3f {
+	float& operator[](int i) { return vec[i]; }
+	float vec[3];
+} MW_Vec3f;
 
 /* MW_ComponentField is a bitfield representing the components that any given
  * Entity contains. It is used mainly for instantiation and safety to make sure

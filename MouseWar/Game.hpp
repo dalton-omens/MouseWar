@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <memory>
+#include "Systems/System.h"
 #include "Entities/Cursor.hpp"
 #include "Entities/BasicBullet.hpp"
 
@@ -25,6 +26,7 @@ public:
 	void clearProjectiles();
 
 	int update();
+
 private:
 	std::vector<std::unique_ptr<Cursor>> cursors;
 	std::vector<std::unique_ptr<BasicBullet>> projectiles;

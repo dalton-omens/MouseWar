@@ -6,8 +6,8 @@ class TransformComponent {
 public:
 	TransformComponent();
 
-	MW_Vec3 position;
-	MW_Vec3 rotation;
-	MW_Vec3 scale;
+	MW_Vec3f position;
+	MW_Vec3f rotation;
+	MW_Vec3f scale;
 };
 

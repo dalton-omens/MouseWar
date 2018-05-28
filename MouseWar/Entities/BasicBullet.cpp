@@ -3,9 +3,9 @@
 BasicBullet::BasicBullet(std::shared_ptr<Game> game, int projID, int xPos, int yPos, int xVel, int yVel)
 	: game(game), projID(projID), xPos(xPos), yPos(yPos), xVel(xVel), yVel(yVel)
 {
-	shape = std::make_unique<sf::CircleShape>(BULLET_RADIUS, BULLET_POINT_COUNT);
+	shape = std::make_unique<sf::CircleShape>((float) BULLET_RADIUS, (float) BULLET_POINT_COUNT);
 	shape->setFillColor(sf::Color::Black);
-	shape->setPosition(xPos, yPos);
+	shape->setPosition((float) xPos, (float) yPos);
 
 	windowWidth = game->window->getSize().x;
 	windowHeight = game->window->getSize().y;
@@ -35,7 +35,7 @@ void BasicBullet::setyPos(int input) {
 int BasicBullet::update() {
 	xPos += xVel;
 	yPos += yVel;
-	shape->setPosition(xPos, yPos);
+	shape->setPosition((float) xPos, (float) yPos);
 
 	/* If this bullet travels out of bounds, remove it from the game */
 	if (xPos > windowWidth || xPos < 0 || yPos > windowHeight || yPos < 0) {
