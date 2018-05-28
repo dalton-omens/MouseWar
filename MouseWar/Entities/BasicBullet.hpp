@@ -10,7 +10,7 @@
 
 class Game;
 
-class BasicBullet : public Entity {
+class BasicBullet : public Entity_old {
 public:
 	BasicBullet(std::shared_ptr<Game> game, int projID, int xPos, int yPos, int xVel, int yVel);
 

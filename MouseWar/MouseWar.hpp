@@ -9,6 +9,5 @@
 #include "Game.hpp"
 #include "Render.hpp"
 
-
 int processMouseEvents(std::shared_ptr<Game> game);
 int initManyMouse();

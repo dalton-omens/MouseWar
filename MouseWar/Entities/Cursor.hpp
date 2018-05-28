@@ -11,9 +11,9 @@
 #define MOUSE_HEIGHT 29
 #define MOUSE_WIDTH 23
 
-class Game; // find out why this is necessary
+class Game; //forward declaration for Game
 
-class Cursor : public Entity {
+class Cursor : public Entity_old {
 public:
 	Cursor(std::shared_ptr<Game> game, sf::Color* color_in);
 
