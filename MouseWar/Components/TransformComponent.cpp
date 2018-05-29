@@ -1,8 +1,4 @@
 #include "TransformComponent.h"
 
-TransformComponent::TransformComponent()
-{
-	position = {};
-	rotation = {};
-	scale = {};
-}
+TransformComponent::TransformComponent() :
+	position({}), rotation({}), scale({}) {}

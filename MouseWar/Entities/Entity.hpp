@@ -6,6 +6,7 @@
 #include "../MW_Common.h"
 #include "../Components/TransformComponent.h"
 #include "../Components/DrawComponent.h"
+#include "../Components/PhysicalComponent.h"
 
 
 
@@ -37,4 +38,5 @@ public:
 
 	std::unique_ptr<TransformComponent> transform_c;
 	std::unique_ptr<DrawComponent>      draw_c;
+	std::unique_ptr<PhysicalComponent>  physical_c;
 };

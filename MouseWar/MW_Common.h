@@ -20,6 +20,7 @@ typedef uint8_t MW_ComponentField;
  */
 #define TRANSFORM_COMPONENT 0b10000000
 #define DRAW_COMPONENT      0b01000000
+#define PHYSICAL_COMPONENT  0b00100000
 
 /* Every entity has a unique ID */
 typedef uint32_t MW_EntityID;

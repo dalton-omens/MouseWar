@@ -10,11 +10,12 @@ class System
 {
 public:
 	void addEntity(MW_EntityID id, Entity* entity);
+	void removeEntity(MW_EntityID id);
 	virtual void update();
 
 	/* Virtual destructor makes sure that subclass destructor is called */
 	virtual ~System() {};
 
-private:
+protected:
 	std::unordered_map<MW_EntityID, Entity*> entities;
 };

@@ -2,7 +2,8 @@
 
 #include "../MW_Common.h"
 
-class TransformComponent {
+class TransformComponent 
+{
 public:
 	TransformComponent();
 
